@@ -10,6 +10,7 @@
  * The module that contains all the utility stuff
  */
 
+export
 /**
  * @summary
  * Make a new Disqus configuration function with a given configuration.
@@ -38,8 +39,8 @@ let makeDisqusConfigFunc = ({identifier, url, title, categoryID, callbacks}) =>
     this.callbacks = callbacks;
     /* eslint-enable */
   };
-export let makeDisqusConfigFunc;
 
+export
 /**
  * Construct a Disqus embed script URL from a given shortname
  *
@@ -49,8 +50,8 @@ export let makeDisqusConfigFunc;
  */
 let makeDisqusEmbedScriptUrl = (shortname) =>
   '//' + shortname + '.disqus.com/embed.js';
-export let makeDisqusEmbedScriptUrl;
 
+export
 /**
  * Construct a Disqus comment counters script URL from a given shortname
  *
@@ -60,7 +61,6 @@ export let makeDisqusEmbedScriptUrl;
  */
 let makeDisqusCommentCountersScriptUrl = (shortname) =>
   '//' + shortname + '.disqus.com/count.js';
-export let makeDisqusCommentCountersScriptUrl;
 
 export default {
   makeDisqusConfigFunc,
