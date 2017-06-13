@@ -8,7 +8,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {
   Box as DisqussionBox,
-  CommentsCounterSpan as DisqussionCommentsCounterSpan
+  CommentsCounterSpan as DisqussionCommentsCounterSpan,
   CommentsCounterLink as DisqussionCommentsCounterLink
 } from "react-disqussion";
 
