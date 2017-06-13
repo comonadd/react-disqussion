@@ -17,6 +17,8 @@ plugins:
   - react
 parser: babel-eslint
 rules:
+  jsx-uses-vars: 0
+  no-unused-vars: 0
   no-console:
     - error
     - allow:
