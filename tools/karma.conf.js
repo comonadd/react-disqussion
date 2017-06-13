@@ -35,7 +35,6 @@ module.exports = config => {
     plugins: [
       'karma-chai',
       'karma-mocha',
-      'karma-chrome-launcher',
       'karma-phantomjs-launcher',
       'karma-sourcemap-loader',
       'karma-webpack',
