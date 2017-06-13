@@ -38,13 +38,12 @@ const THREAD_CONTEXT_TYPES = {
  * @property title {String} - The title of the thread
  * @property url {String} - The url of the thread
  * @property categoryID {String} - The thread category ID
- * @property onNewComment {Function} - Function that gets called when new
- *           comment is posted in this thread.
  * @property afterRender {Function} - "afterRender" Disqus callback
  * @property beforeComment {Function} - "beforeRender" Disqus callback
  * @property onIdentify {Function} - "onIdentity" Disqus callback
+ * @property onNewComment {Function} - Function that gets called when new
+ *           comment is posted in this thread.
  * @property onInit {Function} - "onInit" Disqus callback
- * @property onNewComment {Function} - "onNewComment" Disqus callback
  * @property onPaginate {Function} - "onPaginate" Disqus callback
  * @property onReady {Function} - "onReady" Disqus callback
  * @property preData {Function} - "preData" Disqus callback
