@@ -4,28 +4,32 @@
 /* Description: */
 /* This example demostrates how to use `Thread` component */
 
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {
   Box as DisqussionBox,
   Thread as DisqussionThread,
-} from "react-disqussion";
+} from 'react-disqussion';
 
 /**
  * The application main component
+ *
+ * @return {React.Component}
  */
 const App = () => {
   /**
    * The function that is passed as a callback to
    * the `DisqussionThread` component constructor.
    *
-   * @param comment {Object} - The object which consists of an ID and text of
+   * @param {Object} comment - The object which consists of an ID and text of
    *                           a newly posted comment.
+   * @param {string} comment.id - The ID of the comment.
+   * @param {string} comment.text - The text of the comment.
    *
-   * @returns {undefined}
+   * @return {undefined}
    */
   let handleNewComment = ({id, text}) =>
-    console.info("New comment posted with ID: " + id + ", and text: " + text);
+    console.info('New comment posted with ID: ' + id + ', and text: ' + text);
 
   return (
     <div>
@@ -34,7 +38,7 @@ const App = () => {
           will allow components in subtree
           to use the Disqussion library.
         */}
-      <DisqussionBox shortname="very-wow-website">
+      <DisqussionBox shortname='very-wow-website'>
         {/*
             The `DisqussionThread` component
             will show the Disqus comments thread
@@ -49,10 +53,10 @@ const App = () => {
             [here](https://help.disqus.com/customer/portal/articles/466258-how-can-i-capture-disqus-commenting-activity-in-my-own-analytics-tool-).
           */}
         <DisqussionThread
-            identifier="very-much-unique-key-993891-wow"
-            title="Wow Very Thread"
-            url="https://www.very-wow-website.com/very-much-thread"
-            categoryID="92"
+            identifier='very-much-unique-key-993891-wow'
+            title='Wow Very Thread'
+            url='https://www.very-wow-website.com/very-much-thread'
+            categoryID='92'
             onNewComment={handleNewComment}
         />
       </DisqussionBox>
@@ -61,6 +65,6 @@ const App = () => {
 };
 
 /* Render the application onto the application container element */
-let appContainerElem = document.createElement("div");
+let appContainerElem = document.createElement('div');
 document.body.appendChild(appContainerElem);
 ReactDOM.render(<App />, appContainerElem);

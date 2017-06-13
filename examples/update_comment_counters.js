@@ -4,18 +4,24 @@
 /* Description: */
 /* This examples shows how to update the all the comment counters on the page */
 
-import PropTypes from "prop-types";
-import React from "react";
-import ReactDOM from "react-dom";
+import PropTypes from 'prop-types';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {
   Box as DisqussionBox,
   CommentsCounterSpan as DisqussionCommentsCounterSpan,
-} from "react-disqussion";
+} from 'react-disqussion';
 
 /**
  * The application main component.
  */
 class App extends React.Component {
+  /**
+   * @summary
+   * Function that gets called after the component is mounted.
+   *
+   * @return {undefined}
+   */
   componentDidMount() {
     /* Make so that comment counters will update each 20 seconds */
     window.setInterval(() => {
@@ -25,6 +31,11 @@ class App extends React.Component {
     }, 20000);
   }
 
+  /**
+   * @summary Render the component.
+   *
+   * @return {React.Element}
+   */
   render() {
     return (
       <div>
@@ -34,8 +45,8 @@ class App extends React.Component {
             with a given identifier and url.
           */}
         <DisqusisonCommentsCounterSpan
-            identifier="very-much-unique-key-993298-wow"
-            url="https://www.very-wow-website.com/very-much-thread"
+            identifier='very-much-unique-key-993298-wow'
+            url='https://www.very-wow-website.com/very-much-thread'
         />
       </div>
     );
@@ -49,24 +60,26 @@ App.contextTypes = {
 };
 
 /**
+ * @summary Create a root component.
+ *
+ * @description
  * The root component that wraps the `App` component
  * with the `DisqussionBox` component.
+ *
+ * @return {React.Element}
  */
-const Root = () => {
-  return (
-    <div>
-      {/*
-          The `DisqussionBox` component will allow components in subtree
-          to use the Disqussion library.
-        */}
-      <DisqussionBox shortname="very-wow-website">
-        <App />
-      </DisqussionBox>
-    </div>
-  );
-}
+const Root = () =>
+  <div>
+    {/*
+        The `DisqussionBox` component will allow components in subtree
+        to use the Disqussion library.
+      */}
+    <DisqussionBox shortname='very-wow-website'>
+      <App />
+    </DisqussionBox>
+  </div>;
 
 /* Render the application onto the application container element */
-let appContainerElem = document.createElement("div");
+let appContainerElem = document.createElement('div');
 document.body.appendChild(appContainerElem);
 ReactDOM.render(<Root />, appContainerElem);
