@@ -14,7 +14,7 @@
   ],
   "homepage": "https://github.com/wrongway4you/react-disqussion",
   "npmName": "react-disqussion",
-  "browser": "build/dist/redux.js",
+  "browser": "build/dist/index.js",
   "main": "build/lib/index.js",
   "module": "build/es/index.js",
   "jsnext:main": "build/es/index.js",
