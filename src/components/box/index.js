@@ -104,7 +104,6 @@ const BOX_PROP_TYPES = {
   shortname: PropTypes.string.isRequired,
 };
 
-
 /**
  * The main library component.
  *
