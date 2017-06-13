@@ -13,7 +13,7 @@ module.exports = config => {
     basePath: projectConfig.paths.rootDir,
 
     /* Browsers to use */
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     /* Testing frameworks to use */
     frameworks: ['mocha', 'chai'],
