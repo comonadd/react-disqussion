@@ -1,0 +1,25 @@
+extends:
+  - google
+globals:
+  React: true
+env:
+  browser: true
+  commonjs: true
+  es6: true
+  node: true
+parserOptions:
+  ecmaVersion: 6
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
+    jsx: true
+  sourceType: module
+plugins:
+  - react
+parser: babel-eslint
+rules:
+  no-console:
+    - error
+    - allow:
+      - warn
+      - error
+      - info
