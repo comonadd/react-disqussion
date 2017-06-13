@@ -1,0 +1,85 @@
+{
+  "name": "react-disqussion",
+  "version": "1.0.1",
+  "description": "Disqus library for React",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wrongway4you/react-disqussion.git"
+  },
+  "author": "Dmitry Guzeev <dmitry.guzeev@yahoo.com>",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "disqus"
+  ],
+  "homepage": "https://github.com/wrongway4you/react-disqussion",
+  "npmName": "react-disqussion",
+  "npmFileMap": [
+    {
+      "basePath": "/dist/",
+      "files": [
+        "*.js"
+      ]
+    }
+  ],
+  "scripts": {
+    "test:watch": "BUILD_ENV=dev BUILD_TESTS=1 karma start tools/karma.conf.js",
+    "test:single": "BUILD_ENV=dev BUILD_TESTS=1 karma start tools/karma.conf.js --single-run",
+    "build:dev": "BUILD_ENV=dev node tools/build",
+    "build:release": "BUILD_ENV=release node tools/build",
+    "build": "yarn run build:release",
+    "lint:src": "eslint src",
+    "lint:examples": "eslint examples",
+    "lint": "yarn run lint:src && yarn run lint:examples",
+    "docs:build": "jsdoc -c jsdoc.json -r",
+    "docs:clean": "rimraf docs/documentation",
+    "clean": "node tools/clean"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-plugin-transform-regenerator": "^6.24.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^4.0.2",
+    "enzyme": "^2.8.2",
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.8.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-react": "^7.0.1",
+    "jsdoc": "^3.4.3",
+    "json-loader": "^0.5.4",
+    "karma": "^1.7.0",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-cli": "^1.0.1",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.3",
+    "karma-nyan-reporter": "^0.2.5",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.3",
+    "mocha": "^3.4.2",
+    "mocha-loader": "^1.1.1",
+    "phantomjs-prebuilt": "^2.1.14",
+    "react-addons-test-utils": "^15.5.1",
+    "react-dom": "^15.5.4",
+    "react-test-renderer": "^15.5.4",
+    "rimraf": "^2.6.1",
+    "webpack": "^2.6.1"
+  }
+}

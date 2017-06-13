@@ -10,8 +10,8 @@
  * The module that defines the `Thread` component.
  */
 
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * @constant {Object}
@@ -38,17 +38,16 @@ const THREAD_CONTEXT_TYPES = {
  * @property title {String} - The title of the thread
  * @property url {String} - The url of the thread
  * @property categoryID {String} - The thread category ID
+ * @property afterRender {Function} - 'afterRender' Disqus callback
+ * @property beforeComment {Function} - 'beforeRender' Disqus callback
+ * @property onIdentify {Function} - 'onIdentity' Disqus callback
  * @property onNewComment {Function} - Function that gets called when new
  *           comment is posted in this thread.
- * @property afterRender {Function} - "afterRender" Disqus callback
- * @property beforeComment {Function} - "beforeRender" Disqus callback
- * @property onIdentify {Function} - "onIdentity" Disqus callback
- * @property onInit {Function} - "onInit" Disqus callback
- * @property onNewComment {Function} - "onNewComment" Disqus callback
- * @property onPaginate {Function} - "onPaginate" Disqus callback
- * @property onReady {Function} - "onReady" Disqus callback
- * @property preData {Function} - "preData" Disqus callback
- * @property preReset {Function} - "preReset" Disqus callback
+ * @property onInit {Function} - 'onInit' Disqus callback
+ * @property onPaginate {Function} - 'onPaginate' Disqus callback
+ * @property onReady {Function} - 'onReady' Disqus callback
+ * @property preData {Function} - 'preData' Disqus callback
+ * @property preReset {Function} - 'preReset' Disqus callback
  */
 const THREAD_PROP_TYPES = {
   identifier: PropTypes.string,
@@ -97,7 +96,7 @@ class Thread extends React.Component {
    * This function reloads the Disqus configuration in order to this
    * thread to show proper data.
    *
-   * @returns {undefined}
+   * @return {undefined}
    */
   configureDisqus() {
     /* Set the configuration */
@@ -124,11 +123,12 @@ class Thread extends React.Component {
   }
 
   /**
-   * @summary
-   * Render the component
+   * @summary Render the component
+   *
+   * @return {React.Component}
    */
   render() {
-    return <div id="disqus_thread"></div>;
+    return <div id='disqus_thread'></div>;
   }
 };
 

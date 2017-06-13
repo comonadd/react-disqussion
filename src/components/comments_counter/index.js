@@ -10,8 +10,8 @@
  * The module that defines the `CommentsCounter` component.
  */
 
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * @constant {Object}
@@ -44,14 +44,15 @@ const COMMENTS_COUNTER_CONTEXT_TYPES = {
 };
 
 /**
+ * @summary
  * The `CommentsCounter` component
  *
+ * @extends React.Component
+ *
+ * @description
  * The `CommentsCounter` component shows the count
  * of comments of a given Disqus thread using
  * given thread identifier and URL.
- *
- * @prop identifier {String} - The thread identifier
- * @prop url {String} - The thread URL
  */
 class CommentsCounter extends React.Component {
   /**
@@ -59,7 +60,7 @@ class CommentsCounter extends React.Component {
    * `componentDidMount()` function
    *
    * @description
-   * This function is called when the element was "mounted"
+   * This function is called when the element was 'mounted'
    * to the DOM.
    */
   componentDidMount() {

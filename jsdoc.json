@@ -1,0 +1,21 @@
+/* File: jsdoc.json */
+/* Creation date: 2017-06-13 */
+/* Creator: Dmitry Guzeev <dmitry.guzeev@yahoo.com> */
+/* Description: */
+/* The configuration file for JSDoc utility */
+
+{
+  "source": {
+    "include": ["src", "tools"],
+    "exclude": ["node_modules"],
+    "includePattern": ".+\\.jsx?",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "opts": {
+    "encoding": "utf8",
+    "destination": "docs/documentation",
+    "recurse": true,
+    "readme": "README.md"
+  },
+  "plugins": []
+}

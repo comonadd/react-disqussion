@@ -10,9 +10,9 @@
  * The module that defines the `CommentsCounterLink` component.
  */
 
-import React from "react";
+import React from 'react';
 
-import CommentsCounter from "components/comments_counter";
+import CommentsCounter from 'components/comments_counter';
 
 /**
  * The component that represents the Disqus comments counter link
@@ -34,11 +34,13 @@ class CommentsCounterLink extends CommentsCounter {
   /**
    * @summary
    * Render the component
+   *
+   * @return {React.Element}
    */
   render() {
     return (
       <a
-          href={this.props.url + "#disqus_thread"}
+          href={this.props.url + '#disqus_thread'}
           data-disqus-identifier={this.props.identifier}>
       </a>
     );

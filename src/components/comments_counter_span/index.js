@@ -10,9 +10,9 @@
  * The module that defines the `CommentsCounterSpan` component.
  */
 
-import React from "react";
+import React from 'react';
 
-import CommentsCounter from "components/comments_counter";
+import CommentsCounter from 'components/comments_counter';
 
 /**
  * The `CommentsCounterSpan` component
@@ -30,11 +30,13 @@ class CommentsCounterSpan extends CommentsCounter {
   /**
    * @summary
    * Render the component
+   *
+   * @return {React.Element}
    */
   render() {
     return (
       <span
-          className="disqus-comment-count"
+          className='disqus-comment-count'
           data-disqus-identifier={this.props.identifier}
           data-disqus-url={this.props.url}>
       </span>
