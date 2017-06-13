@@ -11,5 +11,5 @@ const config = require("./config");
 /* Remove the temporary directory */
 rimraf(config.paths.tmpDir, () => {});
 
-/* Remove the output directory */
-rimraf(config.paths.outDir, () => {});
+/* Remove the dist directory */
+rimraf(config.paths.distDir, () => {});
