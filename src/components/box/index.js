@@ -83,7 +83,7 @@ const BOX_CHILD_CONTEXT_TYPES = {
     reloadDisqus: PropTypes.func,
     loadDisqusEmbedScript: PropTypes.func,
     loadDisqusCommentCountersScript: PropTypes.func,
-    updateDisqusCommentCounters: PropTypes.bool,
+    updateDisqusCommentCounters: PropTypes.func,
     disqusEmbedScriptLoaded: PropTypes.bool,
     disqusEmbedScriptLoading: PropTypes.bool,
     disqusCommentCountersScriptLoaded: PropTypes.bool,
