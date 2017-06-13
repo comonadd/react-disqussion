@@ -16,27 +16,22 @@ const buildEnvConfig = {
   'commonjs': {
     outputPath: config.paths.commonJsBuildOutDir,
     outputFilename: 'index.js',
-    outputLibraryTarget: 'commonjs',
   },
   'es': {
     outputPath: config.paths.esBuildOutDir,
     outputFilename: "index.js",
-    outputLibraryTarget: 'var',
   },
   'umd': {
     outputPath: config.paths.umdBuildOutDir,
     outputFilename: "lib.js",
-    outputLibraryTarget: 'umd',
   },
   'umd-min': {
     outputPath: config.paths.umdBuildOutDir,
     outputFilename: "lib.min.js",
-    outputLibraryTarget: 'umd',
   },
   'test': {
     outputPath: config.paths.tmpDir,
     outputFilename: "lib.js",
-    outputLibraryTarget: 'var',
   },
 };
 
@@ -54,10 +49,10 @@ const buildWebpackConfig = () => {
     entry: buildingTests ? null : config.paths.entryFile,
     devtool: buildingTests ? 'inline-source-map' : false,
     output: {
-      path: buildEnvConfig[buildEnv].outputPath,
-      filename: buildEnvConfig[buildEnv].outputFilename,
+      path: buildEnvCurrentConfig.outputPath,
+      filename: buildEnvCurrentConfig.outputFilename,
       library: config.libName,
-      libraryTarget: buildEnvConfig[buildEnv].outputLibraryTarget,
+      libraryTarget: 'umd',
       umdNamedDefine: true,
     },
     module: {
