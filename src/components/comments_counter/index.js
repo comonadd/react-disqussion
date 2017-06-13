@@ -38,7 +38,7 @@ const COMMENTS_COUNTER_PROP_TYPES = {
 const COMMENTS_COUNTER_CONTEXT_TYPES = {
   disqussion: PropTypes.shape({
     disqusCommentCountersScriptLoaded: PropTypes.bool,
-    updateCommentCounters: PropTypes.func,
+    updateDisqusCommentCounters: PropTypes.func,
     loadDisqusCommentCountersScript: PropTypes.func,
   }),
 };
@@ -67,7 +67,7 @@ class CommentsCounter extends React.Component {
     /* If the Disqus comment counters script is already loaded */
     if (this.context.disqussion.disqusCommentCountersScriptLoaded) {
       /* Update the comment counters */
-      this.context.disqussion.updateCommentCounters();
+      this.context.disqussion.updateDisqusCommentCounters();
     } else {
       this.context.disqussion.loadDisqusCommentCountersScript();
     }
