@@ -2,33 +2,36 @@
   "name": "react-disqussion",
   "version": "1.0.1",
   "description": "Disqus library for React",
-  "main": "src/index.js",
+  "author": "Dmitry Guzeev <dmitry.guzeev@yahoo.com>",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/wrongway4you/react-disqussion.git"
   },
-  "author": "Dmitry Guzeev <dmitry.guzeev@yahoo.com>",
-  "license": "MIT",
   "keywords": [
     "react",
     "disqus"
   ],
   "homepage": "https://github.com/wrongway4you/react-disqussion",
   "npmName": "react-disqussion",
-  "npmFileMap": [
-    {
-      "basePath": "/dist/",
-      "files": [
-        "*.js"
-      ]
-    }
+  "browser": "build/dist/redux.js",
+  "main": "build/lib/index.js",
+  "module": "build/es/index.js",
+  "jsnext:main": "build/es/index.js",
+  "files": [
+    "build",
+    "src"
   ],
   "scripts": {
-    "test:watch": "BUILD_ENV=dev BUILD_TESTS=1 karma start tools/karma.conf.js",
-    "test:single": "BUILD_ENV=dev BUILD_TESTS=1 karma start tools/karma.conf.js --single-run",
-    "build:dev": "BUILD_ENV=dev node tools/build",
-    "build:release": "BUILD_ENV=release node tools/build",
-    "build": "yarn run build:release",
+    "pretest": "yarn run lint:src",
+    "prepublish": "yarn run clean && yarn run lint && yarn run build",
+    "test:watch": "BUILD_ENV=test karma start tools/karma.conf.js",
+    "test:single": "BUILD_ENV=test karma start tools/karma.conf.js --single-run",
+    "build:commonjs": "BUILD_ENV=commonjs node tools/build",
+    "build:es": "BUILD_ENV=es node tools/build",
+    "build:umd": "BUILD_ENV=umd node tools/build",
+    "build:umd:min": "BUILD_ENV=umd-min node tools/build",
+    "build": "yarn run build:commonjs && yarn run build:es && yarn run build:umd && yarn run build:umd:min",
     "lint:src": "eslint src",
     "lint:examples": "eslint examples",
     "lint": "yarn run lint:src && yarn run lint:examples",

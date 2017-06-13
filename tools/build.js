@@ -21,7 +21,7 @@ const webpackConfig = require('./webpack_config');
  */
 const build = () => {
   /* Make the output directory and build library bundle into it */
-  fs.mkdir(config.paths.outDir, () => {
+  fs.mkdir(config.paths.distDir, () => {
     /* Run Webpack */
     webpack(webpackConfig, (err, stats) => {
       if (!err) {
