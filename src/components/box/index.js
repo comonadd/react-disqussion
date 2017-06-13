@@ -10,14 +10,14 @@
  * The module that defines the `Box` component.
  */
 
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   makeDisqusConfigFunc,
   makeDisqusEmbedScriptUrl,
   makeDisqusCommentCountersScriptUrl,
-} from "util";
+} from 'util';
 
 /**
  * @summary
@@ -26,7 +26,7 @@ import {
  * @description
  * This is the ID of the Disqus embed script node.
  */
-const DISQUS_EMBED_SCRIPT_ID = "dsq-embed-scr";
+const DISQUS_EMBED_SCRIPT_ID = 'dsq-embed-scr';
 
 /**
  * @summary
@@ -35,7 +35,7 @@ const DISQUS_EMBED_SCRIPT_ID = "dsq-embed-scr";
  * @description
  * This is an ID of the Disqus comment counters script node.
  */
-const DISQUS_COMMENT_COUNTERS_SCRIPT_ID = "dsq-count-scr";
+const DISQUS_COMMENT_COUNTERS_SCRIPT_ID = 'dsq-count-scr';
 
 /**
  * @constant {Object}
@@ -110,7 +110,7 @@ const BOX_PROP_TYPES = {
  *
  * @extends React.Component
  *
- * @description
+ * @classdesc
  * <p>
  * The main purpose of the `Box` component is to provide a context to
  * the other library components.
@@ -134,9 +134,11 @@ class Box extends React.Component {
     /* Bind the methods to this object */
     this.setDisqusConfig = this.setDisqusConfig.bind(this);
     this.reloadDisqus = this.reloadDisqus.bind(this);
-    this.updateDisqusCommentCounters = this.updateDisqusCommentCounters.bind(this);
+    this.updateDisqusCommentCounters =
+      this.updateDisqusCommentCounters.bind(this);
     this.loadDisqusEmbedScript = this.loadDisqusEmbedScript.bind(this);
-    this.loadDisqusCommentCountersScript = this.loadDisqusCommentCountersScript.bind(this);
+    this.loadDisqusCommentCountersScript =
+      this.loadDisqusCommentCountersScript.bind(this);
 
     /* Set the initial state */
     this.state = {
@@ -172,29 +174,30 @@ class Box extends React.Component {
    * This function loads the Disqus `embed.js` script
    * which is used in order embed the Disqus into the webpage.
    *
-   * @returns {undefined}
+   * @return {undefined}
    */
   loadDisqusEmbedScript() {
     /* If we already started loading the script, return */
     if (this.state.disqusEmbedScriptLoading) return;
 
-    /* Construct a new Disqus configuration function and set it in the global scope */
+    /* Construct a new Disqus configuration function
+       and set it in the global scope */
     const disqusConfigFunc = makeDisqusConfigFunc(this.state.config);
     window.disqus_config = disqusConfigFunc;
 
     /* Create a new script element */
-    let scriptElem = document.createElement("script");
+    let scriptElem = document.createElement('script');
     scriptElem.onload = () => {
-      /* Set "loaded" status to false */
+      /* Set 'loaded' status to false */
       this.state.disqusEmbedScriptLoaded = true;
-      /* Set "loading" status to false */
+      /* Set 'loading' status to false */
       this.state.disqusEmbedScriptLoading = false;
     };
     scriptElem.id = DISQUS_EMBED_SCRIPT_ID;
-    scriptElem.setAttribute("data-timestamp", +new Date());
+    scriptElem.setAttribute('data-timestamp', +new Date());
     scriptElem.src = makeDisqusEmbedScriptUrl(this.props.shortname);
 
-    /* Set "loading" status to true */
+    /* Set 'loading' status to true */
     this.state.disqusEmbedScriptLoading = true;
 
     /* Append the script and start to load it */
@@ -210,24 +213,24 @@ class Box extends React.Component {
    * which is used in order to add comment counters
    * widgets to the page.
    *
-   * @returns {undefined}
+   * @return {undefined}
    */
   loadDisqusCommentCountersScript() {
     /* If we already started loading it, return */
     if (this.state.disqusCommentCountersScriptLoading) return;
 
     /* Create a new script element */
-    let scriptElem = document.createElement("script");
+    let scriptElem = document.createElement('script');
     scriptElem.onload = () => {
-      /* Set "loaded" status to false */
+      /* Set 'loaded' status to false */
       this.state.disqusCommentCountersScriptLoaded = true;
-      /* Set "loading" status to false */
+      /* Set 'loading' status to false */
       this.state.disqusCommentCountersScriptLoading = false;
     };
     scriptElem.id = DISQUS_COMMENT_COUNTERS_SCRIPT_ID;
     scriptElem.src = makeDisqusCommentCountersScriptUrl(this.props.shortname);
 
-    /* Set "loading" status to true */
+    /* Set 'loading' status to true */
     this.state.disqusCommentCountersScriptLoading = true;
 
     /* Append the script and start to load it */
@@ -244,7 +247,7 @@ class Box extends React.Component {
    * The user is not required to use this function. It is used
    * internally.
    *
-   * @returns {undefined}
+   * @return {undefined}
    */
   reloadDisqus() {
     DISQUS.reset({
@@ -262,27 +265,39 @@ class Box extends React.Component {
    * for the `Box` component object. It will *not* update the
    * current configuration of the Disqus scripts.
    *
-   * @param config {Object} - The configuration object.
-   * @param config.identifier {String} - The Disqus thread identifier.
-   * @param config.url {String} - The Disqus thread URL.
-   * @param config.title {String} - The Disqus thread title.
-   * @param config.categoryID {String} - The Disqus thread category ID.
-   * @param config.afterRenderCallback {Function} - The callback will be called (when?).
-   * @param config.beforeCommentCallback {Function} - The callback that will be called
-   *        before comment is posted.
-   * @param config.onIdentifyCallback {Function} - The callback that will be called (when?).
-   * @param config.onInitCallback {Function} - The callback that will be called (when?).
-   * @param config.onNewCommentCallback {Function} - The callback that will be called
-   *        when new comments are posted on the current Disqus thread.
-   * @param config.onPaginateCallback {Function} - The callback that will be called (when?).
-   * @param config.onReadyCallback {Function} - The callback that will be called
-   *        when the Disqus is loaded and ready for work.
-   * @param config.preDataCallback {Function} - The callback that will be called (when?).
-   * @param config.preResetCallback {Function} - The callback that will be called (when?).
-   * @param callback {Function} - The callback that will be called when this function
-   *        is completed doing it's work (setting the new configuration).
+   * @param {Object} config - The configuration object.
+   * @param {String} config.identifier - The Disqus thread identifier.
+   * @param {String} config.url - The Disqus thread URL.
+   * @param {String} config.title - The Disqus thread title.
+   * @param {String} config.categoryID - The Disqus thread category ID.
+   * @param {Function} config.afterRenderCallback
+   *                   The callback will be called (when?).
+   * @param {Function} config.beforeCommentCallback
+   *                   The callback that will be called before comment
+   *                   is posted.
+   * @param {Function} config.onIdentifyCallback
+   *                   The callback that will be called (when?).
+   * @param {Function} config.onInitCallback
+   *                   The callback that will be called (when?).
+   * @param {Function} config.onNewCommentCallback
+   *                   The callback that will be called
+   *                   when new comments are posted on the current Disqus
+   *                   thread.
+   * @param {Function} config.onPaginateCallback
+   *                   The callback that will be called (when?).
+   * @param {Function} config.onReadyCallback
+   *                   The callback that will be called
+   *                   when the Disqus is loaded and ready for work.
+   * @param {Function} config.preDataCallback
+   *                   The callback that will be called (when?).
+   * @param {Function} config.preResetCallback
+   *                   The callback that will be called (when?).
+   * @param {Function} callback
+   *                   The callback that will be called when this function
+   *                   is completed doing it's work
+   *                   (setting the new configuration).
    *
-   * @returns {undefined}
+   * @return {undefined}
    */
   setDisqusConfig(
     {identifier,
@@ -329,7 +344,7 @@ class Box extends React.Component {
    * This function will update all the comment counters
    * that currently exist in the DOM.
    *
-   * @returns {undefined}
+   * @return {undefined}
    */
   updateDisqusCommentCounters() {
     if (this.state.disqusCommentCountersScriptLoaded) {
@@ -337,7 +352,8 @@ class Box extends React.Component {
       DISQUSWIDGETS.getCount({reset: true});
     } else {
       /* The comment counters script is not loaded, load it */
-      /* NOTE: The comment counters will be updated after the load of the script */
+      /* NOTE: The comment counters will be updated
+               after the load of the script */
       this.state.loadDisqusCommentCountersScript();
     }
   }
@@ -355,9 +371,15 @@ class Box extends React.Component {
    * NOTE: `Box.childContextTypes` static field is at the top of the
    * class declaration.
    *
-   * @returns {Object}
+   * @return {Object}
    */
   getChildContext() {
+    const {
+      disqusEmbedScriptLoaded,
+      disqusEmbedScriptLoading,
+      disqusCommentCountersScriptLoaded,
+      disqusCommentCountersScriptLoading,
+    } = this.state;
     return {
       disqussion: {
         setDisqusConfig: this.setDisqusConfig,
@@ -365,10 +387,10 @@ class Box extends React.Component {
         loadDisqusEmbedScript: this.loadDisqusEmbedScript,
         loadDisqusCommentCountersScript: this.loadDisqusCommentCountersScript,
         updateDisqusCommentCounters: this.updateDisqusCommentCounters,
-        disqusEmbedScriptLoaded: this.state.disqusEmbedScriptLoaded,
-        disqusEmbedScriptLoading: this.state.disqusEmbedScriptLoading,
-        disqusCommentCountersScriptLoaded: this.state.disqusCommentCountersScriptLoaded,
-        disqusCommentCountersScriptLoading: this.state.disqusCommentCountersScriptLoading,
+        disqusEmbedScriptLoaded: disqusEmbedScriptLoaded,
+        disqusEmbedScriptLoading: disqusEmbedScriptLoading,
+        disqusCommentCountersScriptLoaded: disqusCommentCountersScriptLoaded,
+        disqusCommentCountersScriptLoading: disqusCommentCountersScriptLoading,
       },
     };
   }
@@ -376,6 +398,8 @@ class Box extends React.Component {
   /**
    * @summary
    * Render the component
+   *
+   * @return {React.Component}
    */
   render() {
     return <div>{this.props.children}</div>;
