@@ -2,7 +2,7 @@
 /* Creation date: 2017-06-10 */
 /* Creator: Dmitry Guzeev <dmitry.guzeev@yahoo.com> */
 /* Description: */
-/* This examples shows how to update the all the comment counters on the page */
+/* This example shows how to update the comment counters on the page */
 
 import PropTypes from 'prop-types';
 import React from 'react';
