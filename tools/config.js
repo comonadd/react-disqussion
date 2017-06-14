@@ -24,6 +24,7 @@ const COMMONJS_BUILD_OUT_DIR = path.resolve(DIST_DIR_PATH, 'lib');
 const ES_BUILD_OUT_DIR = path.resolve(DIST_DIR_PATH, 'es');
 const DOCUMENTS_DIR_PATH = path.resolve(PROJECT_DIR_ROOT_PATH, 'docs');
 const DOCUMENTATION_DIR_PATH = path.resolve(DOCUMENTS_DIR_PATH, 'documentation');
+const MODULES_DOCUMENTATION_DIR_PATH = path.resolve(DOCUMENTATION_DIR_PATH, 'modules');
 
 module.exports = {
   libName: 'ReactDisqussion',
@@ -41,5 +42,6 @@ module.exports = {
     umdBuildOutDir: UMD_BUILD_OUT_DIR,
     documentsDir: DOCUMENTS_DIR_PATH,
     documentationDir: DOCUMENTATION_DIR_PATH,
+    modulesDocumentationDir: MODULES_DOCUMENTATION_DIR_PATH,
   },
 };

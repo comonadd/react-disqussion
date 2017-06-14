@@ -30,26 +30,30 @@ const mapSourcePathToDocPath = (path) =>
  * @return {undefined}
  */
 const gen = () => {
-  /* Generate the full documentation file */
-  jsdoc2md.render({ files: path.resolve(config.paths.srcDir, '**/*.js') }).then((documentation) =>
-    fs.writeFile(path.resolve(config.paths.documentationDir, 'full.md'), documentation, (err) => {
-      // TODO: Handle error
-      if (!err) {
-        logger.log(logger.msgKind.Info, 'generated full documentation file');
-      }
-    }));
-
-  /* Generate documentation for each source file */
-  util.mirrorDir(config.paths.srcDir, config.paths.documentationDir, (srcPath, destPath) => {
-    jsdoc2md.render({ files: srcPath }).then((documentation) => {
-      destPath = destPath.replace(path.extname(destPath), '.md');
-      fs.writeFile(destPath, documentation, (err) => {
+  fs.mkdir(config.paths.documentationDir, () => {
+    /* Generate the full documentation file */
+    jsdoc2md.render({ files: path.resolve(config.paths.srcDir, '**/*.js') }).then((documentation) =>
+      fs.writeFile(path.resolve(config.paths.documentationDir, 'full.md'), documentation, (err) => {
         // TODO: Handle error
         if (!err) {
-          logger.log(
-            logger.msgKind.Info,
-            'generated documentation for "' + path.relative('.', srcPath) + '"');
+          logger.log(logger.msgKind.Info, 'generated full documentation file');
         }
+      }));
+
+    /* Generate documentation for each source file */
+    fs.mkdir(config.paths.modulesDocumentationDir, () => {
+      util.mirrorDir(config.paths.srcDir, config.paths.modulesDocumentationDir, (srcPath, destPath) => {
+        jsdoc2md.render({ files: srcPath }).then((documentation) => {
+          destPath = destPath.replace(path.extname(destPath), '.md');
+          fs.writeFile(destPath, documentation, (err) => {
+            // TODO: Handle error
+            if (!err) {
+              logger.log(
+                logger.msgKind.Info,
+                'generated documentation for "' + path.relative('.', srcPath) + '"');
+            }
+          });
+        });
       });
     });
   });
