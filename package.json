@@ -27,24 +27,25 @@
     "prepublish": "yarn run clean && yarn run lint && yarn run build",
     "test:watch": "cross-env BUILD_ENV=test karma start tools/karma.conf.js",
     "test:single": "cross-env BUILD_ENV=test karma start tools/karma.conf.js --single-run",
-    "build:commonjs": "cross-env BUILD_ENV=commonjs node tools/build",
-    "build:es": "cross-env BUILD_ENV=es node tools/build",
-    "build:umd": "cross-env BUILD_ENV=umd node tools/build",
-    "build:umd:min": "cross-env BUILD_ENV=umd-min node tools/build",
+    "build:commonjs": "babel-node tools/build commonjs",
+    "build:es": "babel-node tools/build es",
+    "build:umd": "babel-node tools/build umd",
+    "build:umd:min": "babel-node tools/build umd-min",
     "prebuild": "yarn run build:commonjs && yarn run build:es",
     "build": "yarn run build:umd && yarn run build:umd:min",
     "lint:src": "eslint src",
     "lint:examples": "eslint examples",
     "lint": "yarn run lint:src && yarn run lint:examples",
-    "docs:gen": "node tools/documentation-manager gen",
-    "docs:clean": "node tools/documentation-manager clean",
-    "clean": "node tools/clean"
+    "docs:gen": "babel-node tools/documentation-manager gen",
+    "docs:clean": "babel-node tools/documentation-manager clean",
+    "clean": "babel-node tools/clean"
   },
   "dependencies": {
     "prop-types": "^15.5.10",
     "react": "^15.5.4"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
