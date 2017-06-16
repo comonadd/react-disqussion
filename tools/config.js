@@ -6,42 +6,99 @@
 
 const path = require('path');
 
-const DEV_BUNDLE_FILE_NAME = 'lib.js';
-const RELEASE_BUNDLE_FILE_NAME = 'lib.min.js';
-const TESTS_BUNDLE_FILE_NAME = 'lib-tests.js';
+const constants = require('./constants');
 
-const TOOLS_DIR_PATH = __dirname;
-const PROJECT_DIR_ROOT_PATH = path.resolve(TOOLS_DIR_PATH, '..');
-const SRC_DIR_PATH = path.resolve(PROJECT_DIR_ROOT_PATH, 'src');
-const DIST_DIR_PATH = path.resolve(PROJECT_DIR_ROOT_PATH, 'build');
-const ENTRY_FILE_PATH = path.resolve(SRC_DIR_PATH, 'index.js');
-const NODE_MODULES_DIR_PATH = path.resolve(PROJECT_DIR_ROOT_PATH, 'node_modules');
-const TESTS_DIR_PATH = path.resolve(PROJECT_DIR_ROOT_PATH, 'tests');
-const TMP_DIR_PATH = path.resolve(PROJECT_DIR_ROOT_PATH, 'tmp');
-const TESTS_ENTRY_FILE_PATH = path.resolve(TESTS_DIR_PATH, 'index.js');
-const UMD_BUILD_OUT_DIR = DIST_DIR_PATH;
-const COMMONJS_BUILD_OUT_DIR = path.resolve(DIST_DIR_PATH, 'lib');
-const ES_BUILD_OUT_DIR = path.resolve(DIST_DIR_PATH, 'es');
-const DOCUMENTS_DIR_PATH = path.resolve(PROJECT_DIR_ROOT_PATH, 'docs');
-const DOCUMENTATION_DIR_PATH = path.resolve(DOCUMENTS_DIR_PATH, 'documentation');
-const MODULES_DOCUMENTATION_DIR_PATH = path.resolve(DOCUMENTATION_DIR_PATH, 'modules');
+const LIB_NAME = module.exports.LIB_NAME = 'ReactDisqussion';
 
-module.exports = {
-  libName: 'ReactDisqussion',
-  paths: {
-    toolsDir: TOOLS_DIR_PATH,
-    rootDir: PROJECT_DIR_ROOT_PATH,
-    srcDir: SRC_DIR_PATH,
-    distDir: DIST_DIR_PATH,
-    entryFile: ENTRY_FILE_PATH,
-    nodeModulesDir: NODE_MODULES_DIR_PATH,
-    testsDir: TESTS_DIR_PATH,
-    tmpDir: TMP_DIR_PATH,
-    commonJsBuildOutDir: COMMONJS_BUILD_OUT_DIR,
-    esBuildOutDir: ES_BUILD_OUT_DIR,
-    umdBuildOutDir: UMD_BUILD_OUT_DIR,
-    documentsDir: DOCUMENTS_DIR_PATH,
-    documentationDir: DOCUMENTATION_DIR_PATH,
-    modulesDocumentationDir: MODULES_DOCUMENTATION_DIR_PATH,
+const TOOLS_DIR_PATH =
+  module.exports.TOOLS_DIR_PATH = __dirname;
+
+const ROOT_DIR_PATH =
+  module.exports.ROOT_DIR_PATH =
+    path.resolve(TOOLS_DIR_PATH, '..');
+
+const SRC_DIR_PATH =
+  module.exports.SRC_DIR_PATH =
+    path.resolve(ROOT_DIR_PATH, 'src');
+
+const BUILD_DIR_PATH =
+  module.exports.BUILD_DIR_PATH =
+    path.resolve(ROOT_DIR_PATH, 'build');
+
+const ENTRY_FILE_PATH =
+  module.exports.ENTRY_FILE_PATH =
+    path.resolve(SRC_DIR_PATH, 'index.js');
+
+const NODE_MODULES_DIR_PATH =
+  module.exports.NODE_MODULES_DIR_PATH =
+    path.resolve(ROOT_DIR_PATH, 'node_modules');
+
+const TESTS_DIR_PATH =
+  module.exports.TESTS_DIR_PATH =
+    path.resolve(ROOT_DIR_PATH, 'tests');
+
+const TMP_DIR_PATH =
+  module.exports.TMP_DIR_PATH =
+    path.resolve(ROOT_DIR_PATH, 'tmp');
+
+const TESTS_ENTRY_FILE_PATH =
+  module.exports.TESTS_ENTRY_FILE_PATH =
+    path.resolve(TESTS_DIR_PATH, 'index.js');
+
+const DOCUMENTS_DIR_PATH =
+  module.exports.DOCUMENTS_DIR_PATH =
+    path.resolve(ROOT_DIR_PATH, 'docs');
+
+const DOCUMENTATION_DIR_PATH =
+  module.exports.DOCUMENTATION_DIR_PATH =
+    path.resolve(DOCUMENTS_DIR_PATH, 'documentation');
+
+const MODULES_DOCUMENTATION_DIR_PATH =
+  module.exports.MODULES_DOCUMENTATION_DIR_PATH =
+    path.resolve(DOCUMENTATION_DIR_PATH, 'modules');
+
+const DEFAULT_BUILD_MODE =
+  module.exports.DEFAULT_BUILD_MODE =
+    constants.buildMode.UMD;
+
+/**
+ * @summary
+ * The configuration of the build modes.
+ */
+module.exports.BUILD_MODE = {
+  [constants.buildMode.COMMONJS]: {
+    entry: path.resolve(SRC_DIR_PATH, 'index.js'),
+    devtool: false,
+    outputPath: path.resolve(BUILD_DIR_PATH, 'lib'),
+    outputFilename: 'index.js',
+    minimizeJs: false,
+  },
+  [constants.buildMode.ES_MODULES]: {
+    entry: path.resolve(SRC_DIR_PATH, 'index.js'),
+    devtool: false,
+    outputPath: path.resolve(BUILD_DIR_PATH, 'es'),
+    outputFilename: 'index.js',
+    minimizeJs: false,
+  },
+  [constants.buildMode.UMD]: {
+    entry: path.resolve(SRC_DIR_PATH, 'index.js'),
+    devtool: false,
+    outputPath: BUILD_DIR_PATH,
+    outputFilename: 'lib.js',
+    minimizeJs: false,
+  },
+  [constants.buildMode.UMD_MIN]: {
+    entry: path.resolve(SRC_DIR_PATH, 'index.js'),
+    devtool: false,
+    outputPath: BUILD_DIR_PATH,
+    outputFilename: 'lib.min.js',
+    minimizeJs: true,
+  },
+  [constants.buildMode.TEST]: {
+    entry: null,
+    outputPath: TMP_DIR_PATH,
+    devtool: 'inline-source-map',
+    outputFilename: 'lib.js',
+    minimizeJs: false,
   },
 };
