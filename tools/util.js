@@ -7,6 +7,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const logger = require('./logger');
+
 /**
  * @summary
  * Print message about the unknown command-line argument
@@ -80,4 +82,25 @@ module.exports.mirrorDir = (srcRootDirPath, destRootDirPath, callback) => {
 
   /* Call the recursive function on the root paths */
   mirrorDir(srcRootDirPath, destRootDirPath);
+};
+
+/**
+ * @summary
+ * The `write()`/`writeFile()` checking callback generator function.
+ *
+ * @description
+ * This function is used in order to generate a error checking callback for the
+ * `write()`/`writeFile()` functions. It takes the function to execute if error
+ * had happened, and returns a callback to pass to those two functions.
+ *
+ * @param {Function} f - The function to call if error occurs.
+ *        The error is passed to the function.
+ *
+ * @return {Function}
+ */
+module.exports.writeCheckingCallback = (f) => (err) => {
+  if (err) {
+    logger.log(logger.msgKind.Error, `Failed to write to a disk:\n${err}`);
+    f(err);
+  }
 };

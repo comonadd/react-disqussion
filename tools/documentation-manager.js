@@ -17,7 +17,7 @@ const util = require('./util');
 const logger = require('./logger');
 
 const mapSourcePathToDocPath = (path) =>
-  path.replace(config.paths.srcDir, config.paths.documentationDir);
+  path.replace(config.SRC_DIR_PATH, config.DOCUMENTATION_DIR_PATH);
 
 /**
  * @summary
@@ -30,29 +30,24 @@ const mapSourcePathToDocPath = (path) =>
  * @return {undefined}
  */
 const gen = () => {
-  fs.mkdir(config.paths.documentationDir, () => {
+  fs.mkdir(config.DOCUMENTATION_DIR_PATH, () => {
     /* Generate the full documentation file */
-    jsdoc2md.render({ files: path.resolve(config.paths.srcDir, '**/*.js') }).then((documentation) =>
-      fs.writeFile(path.resolve(config.paths.documentationDir, 'full.md'), documentation, (err) => {
-        // TODO: Handle error
-        if (!err) {
-          logger.log(logger.msgKind.Info, 'generated full documentation file');
-        }
-      }));
+    jsdoc2md.render({ files: path.resolve(config.SRC_DIR_PATH, '**/*.js') }).then((documentation) =>
+      fs.writeFile(
+        path.resolve(config.DOCUMENTATION_DIR_PATH, 'full.md'),
+        documentation,
+        util.writeCheckingCallback(() => process.exit(1))));
+    logger.log(logger.msgKind.Info, 'generated full documentation file');
 
     /* Generate documentation for each source file */
-    fs.mkdir(config.paths.modulesDocumentationDir, () => {
-      util.mirrorDir(config.paths.srcDir, config.paths.modulesDocumentationDir, (srcPath, destPath) => {
+    fs.mkdir(config.MODULES_DOCUMENTATION_DIR_PATH, () => {
+      util.mirrorDir(config.SRC_DIR_PATH, config.MODULES_DOCUMENTATION_DIR_PATH, (srcPath, destPath) => {
         jsdoc2md.render({ files: srcPath }).then((documentation) => {
           destPath = destPath.replace(path.extname(destPath), '.md');
-          fs.writeFile(destPath, documentation, (err) => {
-            // TODO: Handle error
-            if (!err) {
-              logger.log(
-                logger.msgKind.Info,
-                'generated documentation for "' + path.relative('.', srcPath) + '"');
-            }
-          });
+          fs.writeFile(destPath, documentation, util.writeCheckingCallback(() => process.exit(1)));
+          logger.log(
+            logger.msgKind.Info,
+            'generated documentation for "' + path.relative('.', srcPath) + '"');
         });
       });
     });
@@ -67,7 +62,7 @@ const gen = () => {
  */
 const clean = () => {
   /* Delete the directory that contains the documentation */
-  rimraf(config.paths.documentationDir, () => {});
+  rimraf(config.DOCUMENTATION_DIR_PATH, () => {});
 };
 
 /**

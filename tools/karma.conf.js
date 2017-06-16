@@ -5,12 +5,13 @@
 /* Karma configuration */
 
 const projectConfig = require('./config');
-const webpackConfig = require('./webpack_config');
+const buildWebpackConfig = require('./build_webpack_config');
+const constants = require('./constants');
 
 module.exports = config => {
   config.set({
     /* The base path */
-    basePath: projectConfig.paths.rootDir,
+    basePath: projectConfig.ROOT_DIR_PATH,
 
     /* Browsers to use */
     browsers: ['PhantomJS'],
@@ -50,7 +51,7 @@ module.exports = config => {
     },
 
     /* Webpack preprocessor configuration */
-    webpack: webpackConfig,
+    webpack: buildWebpackConfig(constants.buildMode.TESTS),
     webpackMiddleware: {
       noInfo: false,
     },
