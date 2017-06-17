@@ -11,10 +11,10 @@
  * The main library module
  */
 
-import Box from 'components/box';
-import Thread from 'components/thread';
-import CommentsCounterSpan from 'components/comments_counter_span';
-import CommentsCounterLink from 'components/comments_counter_link';
+import Box from './components/box';
+import Thread from './components/thread';
+import CommentsCounterSpan from './components/comments_counter_span';
+import CommentsCounterLink from './components/comments_counter_link';
 
 export {
   Box,

@@ -30,7 +30,9 @@ const buildModuleWebpackConfig = (buildModeConfig) => ({
           options: {
             babelrc: false,
             presets: ['react', 'es2015', 'stage-2'],
-            plugins: ['transform-react-jsx'],
+            plugins: ['transform-react-jsx', ['babel-plugin-root-import', {
+              rootPathSuffix: config.SRC_DIR_PATH,
+            }]],
           },
         },
       ],

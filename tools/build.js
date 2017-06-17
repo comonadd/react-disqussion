@@ -35,6 +35,12 @@ const buildEsModules = () => {
       compact: true,
       comments: false,
       sourceType: 'module',
+      sourceRoot: config.SRC_DIR_PATH,
+      babelrc: false,
+      presets: ["react", "stage-2"],
+      plugins: [["babel-plugin-root-import", {
+        rootPathSuffix: config.SRC_DIR_PATH,
+      }]],
     };
     util.mirrorDir(config.SRC_DIR_PATH, destDir, (srcFilePath, destFilePath) => {
       logger.log(logger.msgKind.Info, `transforming ${destFilePath}`);
@@ -49,7 +55,7 @@ const buildEsModules = () => {
         } else {
           /* Babel failed to transform a file.  */
           logger.log(logger.msgKind.Error, `babel failed to transform a file:\n${err}`);
-          exit(1);
+          process.exit(1);
         }
       });
     });
