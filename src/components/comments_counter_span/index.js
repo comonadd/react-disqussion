@@ -12,7 +12,7 @@
 
 import React from 'react';
 
-import CommentsCounter from 'components/comments_counter';
+import CommentsCounter from '~/components/comments_counter';
 
 /**
  * The `CommentsCounterSpan` component

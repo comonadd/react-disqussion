@@ -17,7 +17,7 @@ import {
   makeDisqusConfigFunc,
   makeDisqusEmbedScriptUrl,
   makeDisqusCommentCountersScriptUrl,
-} from 'util';
+} from '~/util';
 
 /**
  * @summary

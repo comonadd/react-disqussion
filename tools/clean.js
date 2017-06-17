@@ -4,12 +4,14 @@
 /* Description: */
 /* The script that cleans the project tree */
 
-const rimraf = require("rimraf");
+const rimraf = require('rimraf');
 
-const config = require("./config");
+const config = require('./config');
+
+const removePath = (path) => rimraf(path, () => {});
 
 /* Remove the temporary directory */
-rimraf(config.paths.tmpDir, () => {});
+removePath(config.TMP_DIR_PATH);
 
 /* Remove the dist directory */
-rimraf(config.paths.distDir, () => {});
+removePath(config.BUILD_DIR_PATH);
