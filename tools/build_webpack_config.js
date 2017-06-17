@@ -59,7 +59,6 @@ module.exports = (buildMode) => {
       filename: buildModeConfig.outputFilename,
       library: config.libName,
       libraryTarget: 'umd',
-      umdNamedDefine: true,
     },
     module: buildModuleWebpackConfig(buildModeConfig),
     resolve: {
@@ -77,6 +76,18 @@ module.exports = (buildMode) => {
       'react/lib/ExecutionEnvironment': true,
       'react/lib/ReactContext': true,
       'react/addons': true,
+      'react': {
+        commonjs: 'react',
+        commonjs2: 'react',
+        amd: 'react',
+        root: '_'
+      },
+      'prop-types': {
+        commonjs: 'prop-types',
+        commonjs2: 'prop-types',
+        amd: 'prop-types',
+        root: '_'
+      },
     },
     plugins: [
       ...(buildModeConfig.minimizeJs ? [new webpack.optimize.UglifyJsPlugin({
