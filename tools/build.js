@@ -32,9 +32,9 @@ const buildEsModules = () => {
   fs.mkdir(destDir, () => {
     const babelOptions = {
       ...config.BABEL_OPTIONS,
-      compact: true,
+      compact: false,
       comments: false,
-      sourceType: 'module',
+      /* sourceType: 'module',*/
       sourceRoot: config.SRC_DIR_PATH,
       babelrc: false,
       presets: ["react", "stage-2"],
@@ -82,7 +82,6 @@ const buildEsModules = () => {
       });
     });
   });
-
 };
 
 /**
