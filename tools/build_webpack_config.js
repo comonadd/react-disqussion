@@ -2,7 +2,7 @@
 /* Creation date: 2017-06-11 */
 /* Creator: Dmitry Guzeev <dmitry.guzeev@yahoo.com> */
 /* Description: */
-/* This file defines the Webpack configuratio */
+/* This file defines the Webpack configuration */
 
 const path = require('path');
 
