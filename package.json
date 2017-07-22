@@ -18,7 +18,8 @@
   "module": "build/es/index.js",
   "files": [
     "build",
-    "src"
+    "src",
+    "index.d.ts"
   ],
   "scripts": {
     "pretest": "yarn run lint:src",
