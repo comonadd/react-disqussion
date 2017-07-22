@@ -34,15 +34,15 @@ type BoxState = {
     title: string,
     categoryID: string,
     callbacks: {
-      afterRender: ((): void)[],
-      beforeComment: ((): void)[],
-      onIdentify: ((): void)[],
-      onInit: ((): void)[],
-      onNewComment: ((comment: NewComment): void)[],
-      onPaginate: ((): void)[],
-      onReady: ((): void)[],
-      preData: ((): void)[],
-      preReset: ((): void)[],
+      afterRender: (() => void)[],
+      beforeComment: (() => void)[],
+      onIdentify: (() => void)[],
+      onInit: (() => void)[],
+      onNewComment: ((comment: NewComment) => void)[],
+      onPaginate: (() => void)[],
+      onReady: (() => void)[],
+      preData: (() => void)[],
+      preReset: (() => void)[],
     },
   },
 };
@@ -58,15 +58,15 @@ declare class Box extends React.Component<BoxProps, BoxState> {
     url?: string,
     title?: string,
     categoryID?: string,
-    afterRenderCallback?: (): void,
-    beforeCommentCallback?: (): void,
-    onIdentifyCallback?: (): void,
-    onInitCallback?: (): void,
-    onNewCommentCallback?: (comment: NewComment): void,
-    onPaginateCallback?: (): void,
-    onReadyCallback?: (): void,
-    preDataCallback?: (): void,
-    preResetCallback?: (): void,
+    afterRenderCallback?: () => void,
+    beforeCommentCallback?: () => void,
+    onIdentifyCallback?: () => void,
+    onInitCallback?: () => void,
+    onNewCommentCallback?: (comment: NewComment) => void,
+    onPaginateCallback?: () => void,
+    onReadyCallback?: () => void,
+    preDataCallback?: () => void,
+    preResetCallback?: () => void,
   }): void;
 
   reloadDisqus(): void;
@@ -76,20 +76,20 @@ declare class Box extends React.Component<BoxProps, BoxState> {
 }
 
 type ThreadProps = {
-  identifier: string,
-  title: string,
-  url: string,
-  categoryID: string,
-  onNewComment: (comment: NewComment): void,
-  afterRender: (): void,
-  beforeComment: (): void,
-  onIdentify: (): void,
-  onInit: (): void,
-  onNewComment: (): void,
-  onPaginate: (): void,
-  onReady: (): void,
-  preData: (): void,
-  preReset: (): void,
+  identifier?: string,
+  title?: string,
+  url?: string,
+  categoryID?: string,
+  onNewComment?: (comment: NewComment) => void,
+  afterRender?: () => void,
+  beforeComment?: () => void,
+  onIdentify?: () => void,
+  onInit?: () => void,
+  onNewComment?: () => void,
+  onPaginate?: () => void,
+  onReady?: () => void,
+  preData?: () => void,
+  preReset?: () => void,
 };
 
 type ThreadState = {
@@ -103,8 +103,8 @@ declare class Thread extends React.Component<ThreadProps, ThreadState> {
 }
 
 type CommentsCounterProps = {
-  identifier: string,
-  url: string,
+  identifier?: string,
+  url?: string,
 };
 
 type CommentsCounterState = {
