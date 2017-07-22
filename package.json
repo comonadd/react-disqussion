@@ -1,6 +1,6 @@
 {
   "name": "react-disqussion",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Disqus library for React",
   "author": "Dmitry Guzeev <dmitry.guzeev@yahoo.com>",
   "license": "MIT",
