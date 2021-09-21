@@ -1,5 +1,4 @@
-react-disqussion
-================
+# react-disqussion
 
 ### Description
 
@@ -7,7 +6,8 @@ The React library for working with Disquss.
 
 ### Installation
 
-In order to install the library using npm:
+Install the library using npm:
+
 ```
 $ npm install --save react-disqussion
 ```
